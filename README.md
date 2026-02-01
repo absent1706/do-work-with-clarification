@@ -107,6 +107,16 @@ Invoked when you say "verify", "check", "evaluate", or "review requests". Qualit
 
 See [actions/verify.md](./actions/verify.md) for the full evaluation logic.
 
+### Cleanup (consolidate)
+
+Invoked when you say "cleanup", "tidy", or "consolidate". Also runs automatically at the end of every work loop. Keeps the archive organized:
+- Closes UR folders in `user-requests/` when all their REQs are complete
+- Moves loose REQ files from `archive/` root into their UR folders
+- Moves legacy REQs (no UR reference) into `archive/legacy/`
+- Fixes misplaced folders (e.g., `archive/user-requests/UR-NNN` → `archive/UR-NNN`)
+
+See [actions/cleanup.md](./actions/cleanup.md) for the full consolidation logic.
+
 ## License
 
 MIT

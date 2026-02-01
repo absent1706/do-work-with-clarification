@@ -896,7 +896,9 @@ After archiving and committing:
 
 1. **Re-check** root `do-work/` folder for `REQ-*.md` files (fresh check, not cached list)
 2. If found: Report what was completed, then start Step 1 again
-3. If empty: Report final summary and exit
+3. If empty: **Run the cleanup action** (see [cleanup action](./cleanup.md)), then report final summary and exit
+
+The cleanup action consolidates the archive — closing any UR folders where all REQs are now complete, moving loose REQ files into their UR folders, and organizing legacy files. This catches any consolidation that was missed during individual request archival.
 
 This fresh check on each loop means newly added requests get picked up automatically.
 
@@ -924,6 +926,7 @@ Use this checklist to ensure you don't skip critical steps:
 □ Step 7: If neither → mv do-work/working/REQ-XXX.md do-work/archive/
 □ Step 8: git add -A && git commit (if git repo)
 □ Step 9: Check for more requests, loop or exit
+□ Step 9: If exiting: Run cleanup action (close completed URs, consolidate loose REQs)
 ```
 
 **Common mistakes to avoid:**

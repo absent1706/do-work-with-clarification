@@ -1,7 +1,7 @@
 ---
 name: do-work
 description: Task queue - add requests or process pending work
-argument-hint: run | task to capture
+argument-hint: run | (task to capture) | verify | cleanup | version
 upstream: https://raw.githubusercontent.com/bladnman/do-work/main/SKILL.md
 ---
 
@@ -13,6 +13,7 @@ A unified entry point for task capture and processing.
 - **do**: Capture new tasks/requests → writes to do-work/ folder
 - **work**: Process pending requests → executes the queue
 - **verify**: Evaluate captured REQs against original input → quality check
+- **cleanup**: Consolidate archive → moves loose REQs into UR folders, closes completed URs
 
 ## Routing Decision
 
@@ -25,6 +26,7 @@ Examine what follows "do work":
 | Empty or bare invocation | `do work` | → Ask: "Start the work loop?" |
 | Action verbs only | `do work run`, `do work go`, `do work start` | → work |
 | Verify keywords | `do work verify`, `do work check`, `do work evaluate` | → verify |
+| Cleanup keywords | `do work cleanup`, `do work tidy`, `do work consolidate` | → cleanup |
 | Descriptive content | `do work add dark mode`, `do work [meeting notes]` | → do |
 | Version keywords | `do work version`, `do work update`, `do work check for updates` | → version |
 
@@ -50,6 +52,11 @@ verify, check, evaluate, review requests, review reqs, audit
 
 Note: "check" routes to verify ONLY when used alone or with a target (e.g., "do work check UR-003"). When followed by descriptive content it routes to do (e.g., "do work check if the button works" → do).
 
+### Cleanup Verbs (→ Cleanup)
+
+These signal "consolidate the archive":
+cleanup, clean up, tidy, consolidate, organize archive, fix archive
+
 ### Content Signals (→ Do)
 
 These signal "add a new task":
@@ -71,6 +78,11 @@ These signal "add a new task":
 - `do work check REQ-018` → Evaluates the UR that REQ-018 belongs to
 - `do work evaluate` → Evaluates most recent UR's REQs
 - `do work review requests` → Evaluates most recent UR's REQs
+
+### Routes to Cleanup
+- `do work cleanup` → Consolidates archive, closes completed URs
+- `do work tidy` → Same as cleanup
+- `do work consolidate` → Same as cleanup
 
 ### Routes to Do
 - `do work add dark mode` → Creates REQ file + UR folder
@@ -97,4 +109,5 @@ Follow the detailed instructions in:
 - [do action](./actions/do.md) - Request capture
 - [work action](./actions/work.md) - Queue processing
 - [verify action](./actions/verify.md) - Quality evaluation of captured requests
+- [cleanup action](./actions/cleanup.md) - Archive consolidation and UR closure
 - [version action](./actions/version.md) - Version & updates
