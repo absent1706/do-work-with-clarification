@@ -4,6 +4,13 @@ What's new, what's better, what's different. Most recent stuff on top.
 
 ---
 
+## 0.9.5 — The Reinstall (2026-02-04)
+
+`npx skills update` silently fails to update files despite reporting success. Switched the update command to `npx skills add bladnman/do-work -g -y` which does a full reinstall and actually works. Also fixed the upstream URL — version checks now hit `version.md` where the version number actually lives.
+
+- Update command changed from `npx skills update` to `npx skills add -g -y` (full reinstall)
+- Upstream URL fixed: `SKILL.md` → `actions/version.md`
+
 ## 0.9.4 — The Passport (2026-02-04)
 
 Install and update commands are no longer tied to a single CLI tool. Switched from `npx install-skill` / `npx add-skill` to the portable `npx skills` CLI, which works across multiple agentic coding tools. Update checks now point to `npx skills update` instead of a reinstall command.
